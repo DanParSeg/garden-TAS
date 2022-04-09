@@ -31,6 +31,7 @@ def control_mouse(squares):
     print(mouse.get_position())
     if(mouse_in_square(squares)[0]):
         print("good")
+        return
         sq=mouse_in_square(squares)[1]
         sq_center=((sq[0]+sq[2])/2,(sq[1]+sq[3])/2)
         mouse.move(sq_center[0], sq_center[1],absolute=True, duration=0)
@@ -38,17 +39,17 @@ def control_mouse(squares):
             mouse.move(mouse_direction, 0,absolute=False, duration=0)
     if(mouse.get_position()[0]+35>=(monitor["left"]+monitor["width"])):#change line if right
         print("change line")
-        
+        return
         mouse.move(-20,vertical_move,absolute=False, duration=0)
         mouse_direction=-5
     elif(mouse.get_position()[0]-20<monitor["left"]):#change line if left
         print("change line")
-        
+        return
         mouse.move(20,vertical_move,absolute=False, duration=0)
         mouse_direction=5
     else:
         print("change")
-        
+        return
         pos=mouse.get_position()
         mouse.move(0, 0, absolute=True, duration=0)
         mouse.move(pos[0],pos[1], absolute=True, duration=0)
